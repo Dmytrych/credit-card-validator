@@ -1,0 +1,15 @@
+{
+  "name": "credit-card-validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx tsx src/index.ts",
+    "dev": "NODE_ENV=development npx tsx watch ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-docs": "npx @redocly/cli build-docs public/openapi/api.yaml"
+  },
+  },
+  "author": "",
+  "license": "ISC"
+}
