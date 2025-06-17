@@ -1,10 +1,12 @@
 import Fastify, {FastifyInstance} from 'fastify'
 import {registerRoutes} from "./routes";
-import {serializerCompiler, validatorCompiler, ZodTypeProvider} from "fastify-type-provider-zod";
+import {jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvider} from "fastify-type-provider-zod";
 import {diContainer, fastifyAwilixPlugin} from '@fastify/awilix'
 import {AppConfig} from "../common/configuration";
 import load from "./container";
 import {errorHandler} from "./error-handler";
+import fastifySwagger from '@fastify/swagger';
+import fastifySwaggerUi from '@fastify/swagger-ui';
 
 const initPlugins = async (fastify: FastifyInstance) => {
   await fastify.register(fastifyAwilixPlugin, {
@@ -18,6 +20,14 @@ const initPlugins = async (fastify: FastifyInstance) => {
 
   fastify.setValidatorCompiler(validatorCompiler);
   fastify.setSerializerCompiler(serializerCompiler);
+
+  await fastify.register(fastifySwagger, {
+    transform: jsonSchemaTransform
+  })
+
+  await fastify.register(fastifySwaggerUi, {
+    routePrefix: '/swagger'
+  })
 }
 
 export const initApi = async (config: AppConfig) => {
