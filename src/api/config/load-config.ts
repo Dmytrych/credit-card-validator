@@ -8,6 +8,10 @@ export function loadConfig(): AppConfig {
       api: {
         port: z.coerce.number().parse(process.env.PORT),
         host: z.coerce.string().parse(process.env.HOST)
+      },
+      binApi: {
+        url: z.coerce.string().parse(process.env.BIN_API_URL),
+        apiKey: z.coerce.string().parse(process.env.BIN_API_KEY)
       }
     };
 

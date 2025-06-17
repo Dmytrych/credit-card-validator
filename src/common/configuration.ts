@@ -5,6 +5,10 @@ export const configSchema = z.object({
   api: z.object({
     port: z.number(),
     host: z.string()
+  }),
+  binApi: z.object({
+    url: z.string(),
+    apiKey: z.string()
   })
 });
 

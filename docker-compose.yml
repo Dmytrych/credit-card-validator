@@ -1,0 +1,18 @@
+services:
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: always
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+      HOST: ${HOST}
+      BIN_API_URL: ${BIN_API_URL}
+      BIN_API_KEY: ${BIN_API_KEY}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - '${PORT}:${PORT}'

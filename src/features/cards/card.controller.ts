@@ -1,7 +1,7 @@
 import {FastifyValidatedHandler} from "../../common/types/api";
-import { CardValidationError } from "./card-validation-error";
+import { CardValidationError } from "./card-validation/card-validation-error";
 import { CardValidationSchemaType } from "./card-validation.schema";
-import { ICardValidator } from "./card-validator";
+import { ICardValidator } from "./card-validation/card-validator";
 
 type CardControllerDependencies = {
   cardValidator: ICardValidator
@@ -16,7 +16,7 @@ export class CardController {
 
   validate: FastifyValidatedHandler<CardValidationSchemaType> = async (request, reply) => {
     try {
-      this.cardValidator.validateOrThrow(request.body)
+      await this.cardValidator.validateOrThrow(request.body)
 
       reply.code(200).send({
         valid: true
