@@ -17,6 +17,7 @@ export class BinValidator implements IBinValidator {
         this.binDataSource = deps.binDataSource
     }
 
+    // TODO: Cover with unit tests
     public async validate(cardNumber: string): Promise<boolean> {
         for (const binLength of BIN_LENGTHS) {
             const isValid = await this.binDataSource.isValid(cardNumber.substring(0, binLength))

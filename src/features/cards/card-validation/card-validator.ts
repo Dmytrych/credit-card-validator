@@ -19,6 +19,14 @@ export class CardValidator implements ICardValidator {
         this.binValidator = deps.binValidator
     }
 
+    private checkIsMonthValid(month: number): boolean {
+        return 1 <= month && month <= 12
+    }
+
+    private checkIsYearValid(year: number): boolean {
+        return 0 < year
+    }
+
     private checkIsExpired(expirationYear: number, expirationMonth: number) {
         const today = new Date()
         const expirationDate = new Date(expirationYear, expirationMonth, 1)
@@ -39,6 +47,14 @@ export class CardValidator implements ICardValidator {
     }
 
     public async validateOrThrow(params: ICardValidationParams): Promise<void> {
+        if (!this.checkIsMonthValid(params.expirationMonth)) {
+            throw new CardValidationError(CardValidationErrorCode.InvalidExpirationMonth)
+        }
+
+        if (params.expirationYear <= 0) {
+            throw new CardValidationError(CardValidationErrorCode.InvalidExpirationYear)
+        }
+
         if (this.checkIsExpired(params.expirationYear, params.expirationMonth)) {
             throw new CardValidationError(CardValidationErrorCode.CardExpired)
         }
