@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance } from "axios";
+import axios, { AxiosInstance } from "axios";
 import { AppConfig } from "../common/configuration";
 import { ILogger } from "../common/types/logger";
 

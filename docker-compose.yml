@@ -1,9 +1,9 @@
 services:
-  backend:
+  card-validator:
     build:
-      context: ../backend
+      context: ./
       dockerfile: Dockerfile
-    container_name: backend
+    container_name: card-validator
     restart: always
     environment:
       NODE_ENV: ${NODE_ENV}
@@ -11,8 +11,5 @@ services:
       HOST: ${HOST}
       BIN_API_URL: ${BIN_API_URL}
       BIN_API_KEY: ${BIN_API_KEY}
-    depends_on:
-      postgres:
-        condition: service_healthy
     ports:
       - '${PORT}:${PORT}'
