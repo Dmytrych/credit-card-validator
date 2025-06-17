@@ -6,7 +6,9 @@
   "scripts": {
     "start": "npx tsx src/index.ts",
     "dev": "npx tsx watch ./src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "eslint --config eslint.config.mjs .",
     "lint:fix": "eslint --fix --config eslint.config.mjs --ext src/**/*.ts"
   },
@@ -22,9 +24,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.14.1",
     "eslint": "^9.29.0",
+    "jest": "^30.0.0",
     "pino-pretty": "^13.0.0",
+    "ts-jest": "^29.4.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.1"

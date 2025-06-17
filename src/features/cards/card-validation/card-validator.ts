@@ -23,10 +23,6 @@ export class CardValidator implements ICardValidator {
         return 1 <= month && month <= 12
     }
 
-    private checkIsYearValid(year: number): boolean {
-        return 0 < year
-    }
-
     private checkIsExpired(expirationYear: number, expirationMonth: number) {
         const today = new Date()
         const expirationDate = new Date(expirationYear, expirationMonth, 1)
