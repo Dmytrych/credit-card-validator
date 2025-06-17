@@ -35,7 +35,7 @@ export const initApi = async (config: AppConfig) => {
 
   await initPlugins(fastify);
 
-  fastify.diContainer.register(await load(config, fastify.log))
+  fastify.diContainer.register(load(config, fastify.log))
 
   fastify.setErrorHandler(errorHandler)
 

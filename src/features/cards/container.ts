@@ -1,8 +1,10 @@
 import {asClass} from "awilix";
-import { CardValidationController } from "./card.controller";
+import { CardController } from "./card.controller";
+import { CardValidator } from "./card-validator";
 
 export const load = () => {
   return {
-    cardValidationController: asClass(CardValidationController),
+    cardController: asClass(CardController),
+    cardValidator: asClass(CardValidator)
   }
 }

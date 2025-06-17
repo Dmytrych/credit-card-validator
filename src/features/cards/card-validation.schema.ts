@@ -3,7 +3,7 @@ import {z } from "zod";
 const cardValidationBody = z.object({
     cardNumber: z.string(),
     expirationMonth: z.number(),
-    expidationYear: z.number()
+    expirationYear: z.number()
 })
 
 const cardValidationResponseSchema = z.object({

@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "npx tsx src/index.ts",
-    "dev": "NODE_ENV=development npx tsx watch ./src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx tsx watch ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --config eslint.config.mjs .",
+    "lint:fix": "eslint --fix --config eslint.config.mjs --ext src/**/*.ts"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +23,6 @@
     "@eslint/js": "^9.29.0",
     "@types/node": "^22.14.1",
     "eslint": "^9.29.0",
-    "globals": "^16.2.0",
     "pino-pretty": "^13.0.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
