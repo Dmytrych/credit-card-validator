@@ -7,18 +7,18 @@ export enum CardValidationErrorCode {
 }
 
 const errorMessageMapping: Record<CardValidationErrorCode, string> = {
-    [CardValidationErrorCode.InvalidCardNumber]: "Invalid card number",
-    [CardValidationErrorCode.UnknownError]: "Unknown error",
-    [CardValidationErrorCode.InvalidExpirationMonth]: "Invalid expiration month",
-    [CardValidationErrorCode.InvalidExpirationYear]: "Invalid expiration year",
-    [CardValidationErrorCode.CardExpired]: "Card expired"
+	[CardValidationErrorCode.InvalidCardNumber]: "Invalid card number",
+	[CardValidationErrorCode.UnknownError]: "Unknown error",
+	[CardValidationErrorCode.InvalidExpirationMonth]: "Invalid expiration month",
+	[CardValidationErrorCode.InvalidExpirationYear]: "Invalid expiration year",
+	[CardValidationErrorCode.CardExpired]: "Card expired"
 }
 
 export class CardValidationError extends Error {
-  public readonly code: CardValidationErrorCode
+	public readonly code: CardValidationErrorCode
 
-  constructor(code: CardValidationErrorCode, message = errorMessageMapping[code] ?? errorMessageMapping[CardValidationErrorCode.UnknownError]) {
-    super(message);
-    this.code = code
-  }
+	constructor(code: CardValidationErrorCode, message = errorMessageMapping[code] ?? errorMessageMapping[CardValidationErrorCode.UnknownError]) {
+		super(message);
+		this.code = code
+	}
 }

@@ -6,11 +6,11 @@ import { BinDataSource } from "./data-sources/bin.data-source";
 import { getBinApiAxiosInstance } from "./axios";
 
 export default (config: AppConfig, logger: ILogger) => {
-  return {
-    appConfig: asValue(config),
-    logger: asValue(logger),
-    binApiAxiosInstance: asValue(getBinApiAxiosInstance(config, logger)),
-    binDataSource: asClass(BinDataSource),
-    ...cardContainer.load()
-  }
+	return {
+		appConfig: asValue(config),
+		logger: asValue(logger),
+		binApiAxiosInstance: asValue(getBinApiAxiosInstance(config, logger)),
+		binDataSource: asClass(BinDataSource),
+		...cardContainer.load()
+	}
 }

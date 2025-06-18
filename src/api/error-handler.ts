@@ -3,13 +3,13 @@ import {FastifyError, FastifyInstance, FastifyReply, FastifyRequest} from "fasti
 const GENERAL_ERROR_MESSAGE = 'Internal error'
 
 export const getErrorHandler = (exposeMessages: boolean = false) => function (this:FastifyInstance, error: FastifyError, _: FastifyRequest, reply: FastifyReply) {
-  const statusCode = error.statusCode || 500;
+	const statusCode = error.statusCode || 500;
 
-  this.log.error(error.message, {
-    error
-  })
+	this.log.error(error.message, {
+		error
+	})
 
-  reply.status(statusCode).send({
-    message: exposeMessages ? error.message : GENERAL_ERROR_MESSAGE,
-  });
+	reply.status(statusCode).send({
+		message: exposeMessages ? error.message : GENERAL_ERROR_MESSAGE,
+	});
 }

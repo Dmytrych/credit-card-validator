@@ -4,13 +4,13 @@ import { CardController } from "./card.controller";
 import { cardValidationSchema } from "./card-validation.schema";
 
 export function cardValidationRoutes(app: FastifyInstanceType) {
-  app.post(
-    '/validate',
-    {
-      schema: cardValidationSchema,
-    },
-    injectionHandler(
-      (diScope) => diScope.resolve<CardController>('cardController').validate
-    )
-  )
+	app.post(
+		'/validate',
+		{
+			schema: cardValidationSchema,
+		},
+		injectionHandler(
+			(diScope) => diScope.resolve<CardController>('cardController').validate
+		)
+	)
 }

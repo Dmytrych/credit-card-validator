@@ -11,21 +11,21 @@ export interface IBinValidator {
 }
 
 export class BinValidator implements IBinValidator {
-    private readonly binDataSource: IBinDataSource
+	private readonly binDataSource: IBinDataSource
 
-    constructor(deps: IBinVlidatorDependencies) {
-        this.binDataSource = deps.binDataSource
-    }
+	constructor(deps: IBinVlidatorDependencies) {
+		this.binDataSource = deps.binDataSource
+	}
 
-    public async validate(cardNumber: string): Promise<boolean> {
-        for (const binLength of BIN_LENGTHS) {
-            const isValid = await this.binDataSource.isValid(cardNumber.substring(0, binLength))
+	public async validate(cardNumber: string): Promise<boolean> {
+		for (const binLength of BIN_LENGTHS) {
+			const isValid = await this.binDataSource.isValid(cardNumber.substring(0, binLength))
 
-            if (isValid) {
-                return true
-            }
-        }
+			if (isValid) {
+				return true
+			}
+		}
 
-        return false
-    }
+		return false
+	}
 }

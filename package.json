@@ -10,7 +10,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint": "eslint --config eslint.config.mjs .",
-    "lint:fix": "eslint --fix --config eslint.config.mjs --ext src/**/*.ts"
+    "lint:fix": "eslint --fix --config eslint.config.mjs ."
   },
   "author": "",
   "license": "ISC",

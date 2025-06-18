@@ -8,31 +8,31 @@ type CardControllerDependencies = {
 }
 
 export class CardController {
-  private readonly cardValidator: ICardValidator
+	private readonly cardValidator: ICardValidator
 
-  constructor(deps: CardControllerDependencies) {
-    this.cardValidator = deps.cardValidator
-  }
+	constructor(deps: CardControllerDependencies) {
+		this.cardValidator = deps.cardValidator
+	}
 
-  validate: FastifyValidatedHandler<CardValidationSchemaType> = async (request, reply) => {
-    try {
-      await this.cardValidator.validateOrThrow(request.body)
+	validate: FastifyValidatedHandler<CardValidationSchemaType> = async (request, reply) => {
+		try {
+			await this.cardValidator.validateOrThrow(request.body)
 
-      reply.code(200).send({
-        valid: true
-      })
-    } catch (err: unknown) {
-      if (err instanceof CardValidationError) {
-        reply.code(400).send({
-          valid: false,
-          error: {
-            code: err.code,
-            message: err.message
-          }
-        })
-        return
-      }
-      throw err
-    }
-  }
+			reply.code(200).send({
+				valid: true
+			})
+		} catch (err: unknown) {
+			if (err instanceof CardValidationError) {
+				reply.code(400).send({
+					valid: false,
+					error: {
+						code: err.code,
+						message: err.message
+					}
+				})
+				return
+			}
+			throw err
+		}
+	}
 }
