@@ -1,4 +1,4 @@
-import { BinValidator } from '../../../src/features/cards/card-validation/bin-validator'
+import { BinValidator } from '../../src/features/cards/card-validation/bin-validator'
 
 const CARD_NUMBER = '1234567890123456'
 const SIX_DIGIT_BIN = CARD_NUMBER.substring(0, 6)

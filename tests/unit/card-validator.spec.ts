@@ -1,8 +1,8 @@
-import { ICardValidationParams } from '../../../src/features/cards/types'
-import { IBinValidator } from '../../../src/features/cards/card-validation/bin-validator'
-import { CardValidator } from '../../../src/features/cards/card-validation/card-validator'
-import * as utils from '../../../src/features/cards/card-validation/utils'
-import { CardValidationError, CardValidationErrorCode } from '../../../src/features/cards/card-validation/card-validation-error'
+import { ICardValidationParams } from '../../src/features/cards/types'
+import { IBinValidator } from '../../src/features/cards/card-validation/bin-validator'
+import { CardValidator } from '../../src/features/cards/card-validation/card-validator'
+import * as utils from '../../src/features/cards/card-validation/utils'
+import { CardValidationError, CardValidationErrorCode } from '../../src/features/cards/card-validation/card-validation-error'
 
 const createMockBinValidator = (isValid: boolean): IBinValidator => ({
 	validate: jest.fn().mockResolvedValue(isValid),
