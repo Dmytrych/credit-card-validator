@@ -1,8 +1,8 @@
-import { ICardValidationParams } from "../../../../src/features/cards/types"
-import { IBinValidator } from "../../../../src/features/cards/card-validation/bin-validator"
-import { CardValidator } from "../../../../src/features/cards/card-validation/card-validator"
-import * as utils from "../../../../src/features/cards/card-validation/utils"
-import { CardValidationError, CardValidationErrorCode } from "../../../../src/features/cards/card-validation/card-validation-error"
+import { ICardValidationParams } from "../../../src/features/cards/types"
+import { IBinValidator } from "../../../src/features/cards/card-validation/bin-validator"
+import { CardValidator } from "../../../src/features/cards/card-validation/card-validator"
+import * as utils from "../../../src/features/cards/card-validation/utils"
+import { CardValidationError, CardValidationErrorCode } from "../../../src/features/cards/card-validation/card-validation-error"
 
 const createMockBinValidator = (isValid: boolean): IBinValidator => ({
   validate: jest.fn().mockResolvedValue(isValid),
@@ -10,7 +10,7 @@ const createMockBinValidator = (isValid: boolean): IBinValidator => ({
 
 const VALID_CARD = "4111111111111111"
 const INVALID_CARD_WITH_LETTERS = "41111111a1111111"
-const INVALID_LUTH_CARD = "4211111111111111"
+const INVALID_LUHN_CARD = "4211111111111911"
 
 const validParams: ICardValidationParams = {
   cardNumber: VALID_CARD,
@@ -96,7 +96,7 @@ describe("CardValidator", () => {
   })
 
   it("should throw InvalidCardNumber if Luhn check fails", async () => {
-    const params = { ...validParams, cardNumber: INVALID_LUTH_CARD }
+    const params = { ...validParams, cardNumber: INVALID_LUHN_CARD }
 
     const { validator } = setup()
     await expect(validator.validateOrThrow(params)).rejects.toThrow(

@@ -4,7 +4,7 @@ import {jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvi
 import {diContainer, fastifyAwilixPlugin} from '@fastify/awilix'
 import {AppConfig} from "../common/configuration";
 import load from "./container";
-import {errorHandler} from "./error-handler";
+import {getErrorHandler} from "./error-handler";
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 
@@ -40,6 +40,7 @@ export const initApi = async (config: AppConfig) => {
           ignore: 'pid,hostname',
         },
       },
+      level: config.api.logLevel
     }
   }).withTypeProvider<ZodTypeProvider>();
 
@@ -47,7 +48,9 @@ export const initApi = async (config: AppConfig) => {
 
   fastify.diContainer.register(load(config, fastify.log))
 
-  fastify.setErrorHandler(errorHandler)
+  fastify.setErrorHandler(
+    getErrorHandler(config.nodeEnv === 'development')
+  )
 
   await fastify.register(registerRoutes, { prefix: '/v1' })
 
@@ -57,4 +60,6 @@ export const initApi = async (config: AppConfig) => {
     fastify.log.error(err)
     process.exit(1)
   }
+
+  return fastify
 }

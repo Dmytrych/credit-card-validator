@@ -18,6 +18,7 @@ export const cardValidationSchema = {
     body: cardValidationBody,
     response: {
         200: cardValidationResponseSchema,
+        400: cardValidationResponseSchema
     },
 }
 

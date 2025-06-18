@@ -8,22 +8,9 @@ interface IBinDataSourceDependencies {
 
 const responseValidationSchema = z.object({
     Status: z.enum(["SUCCESS", "NOT FOUND"]),
-    Scheme: z.string().nullish(),
-    Type: z.string().nullish(),
-    Issuer: z.string().nullish(),
-    CardTier: z.string().nullish(),
-    Country: z.object({
-        A2: z.string().nullish(),
-        A3: z.string().nullish(),
-        N2: z.string().nullish(),
-        ISD: z.string().nullish(),
-        Name: z.string().nullish(),
-        Cont: z.string().nullish(),
-    }),
-    Luhn: z.boolean().nullish()
 })
 
-type BinResponseData = z.infer<typeof responseValidationSchema>
+export type BinResponseData = z.infer<typeof responseValidationSchema>
 
 export class BinDataSource implements IBinDataSource {
     private readonly axiosInstance: AxiosInstance

@@ -1,6 +1,6 @@
 import { CardValidationError, CardValidationErrorCode } from "./card-validation-error"
 import { ICardValidationParams } from "../types"
-import { checkLuhn } from "./luth-check"
+import { checkLuhn } from "./luhn-check"
 import { parseNumberString, ParsingError } from "./utils"
 import { IBinValidator } from "./bin-validator"
 
