@@ -6,23 +6,23 @@ import AxiosMockAdapter from 'axios-mock-adapter'
 import { BinResponseData } from '../../src/api/data-sources/bin.data-source'
 
 const BIN_API_SUCCESS_RESPONSE: BinResponseData = {
-	Status: "SUCCESS"
+	Status: 'SUCCESS'
 }
 
 const BIN_API_NOT_FOUND_RESPONSE: BinResponseData = {
-	Status: "NOT FOUND"
+	Status: 'NOT FOUND'
 }
 
 const FUTURE_YEAR = new Date().getFullYear() + 1
 
 const VALID_CARD_BODY = {
-	cardNumber: "4242424242424242",
+	cardNumber: '4242424242424242',
 	expirationMonth: 12,
 	expirationYear: FUTURE_YEAR
 }
 
 const INVALID_CARD_BODY = {
-	cardNumber: "1242424242424242",
+	cardNumber: '1242424242424242',
 	expirationMonth: 12,
 	expirationYear: FUTURE_YEAR
 }
@@ -43,7 +43,7 @@ describe('App Integration Tests', () => {
 		app = await createTestServer()
 		await app.ready()
 
-		const binApiInstance = app.diContainer.resolve<AxiosInstance>("binApiAxiosInstance")
+		const binApiInstance = app.diContainer.resolve<AxiosInstance>('binApiAxiosInstance')
 		binApiAxiosMock = new AxiosMockAdapter(binApiInstance);
 	})
 

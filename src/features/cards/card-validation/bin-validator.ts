@@ -1,4 +1,4 @@
-import { IBinDataSource } from "../../../common/types/bin.data-source"
+import { IBinDataSource } from '../../../common/types/bin.data-source'
 
 interface IBinVlidatorDependencies {
     binDataSource: IBinDataSource

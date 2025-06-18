@@ -1,6 +1,6 @@
-import axios, { AxiosInstance } from "axios";
-import { AppConfig } from "../common/configuration";
-import { ILogger } from "../common/types/logger";
+import axios, { AxiosInstance } from 'axios';
+import { AppConfig } from '../common/configuration';
+import { ILogger } from '../common/types/logger';
 
 export const getBinApiAxiosInstance = (appConfig: AppConfig, logger: ILogger): AxiosInstance => {
 	const instance = axios.create({ baseURL: appConfig.binApi.url })

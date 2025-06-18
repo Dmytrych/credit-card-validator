@@ -12,7 +12,8 @@ export default tseslint.config(
 			},
 		},
 		rules: {
-			"indent": ["error", "tab"]
+			indent: ['error', 'tab'],
+			quotes: ['error', 'single'],
 		}
 	},
 );

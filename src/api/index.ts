@@ -1,10 +1,10 @@
 import Fastify, {FastifyInstance} from 'fastify'
-import {registerRoutes} from "./routes";
-import {jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvider} from "fastify-type-provider-zod";
+import {registerRoutes} from './routes';
+import {jsonSchemaTransform, serializerCompiler, validatorCompiler, ZodTypeProvider} from 'fastify-type-provider-zod';
 import {diContainer, fastifyAwilixPlugin} from '@fastify/awilix'
-import {AppConfig} from "../common/configuration";
-import load from "./container";
-import {getErrorHandler} from "./error-handler";
+import {AppConfig} from '../common/configuration';
+import load from './container';
+import {getErrorHandler} from './error-handler';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
 

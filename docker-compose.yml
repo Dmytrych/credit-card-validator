@@ -11,5 +11,6 @@ services:
       HOST: ${HOST}
       BIN_API_URL: ${BIN_API_URL}
       BIN_API_KEY: ${BIN_API_KEY}
+      LOG_LEVEL: ${LOG_LEVEL}
     ports:
       - '${PORT}:${PORT}'

@@ -1,13 +1,13 @@
-import { AxiosInstance } from "axios";
-import { z } from "zod"
-import { IBinDataSource } from "../../common/types/bin.data-source";
+import { AxiosInstance } from 'axios';
+import { z } from 'zod'
+import { IBinDataSource } from '../../common/types/bin.data-source';
 
 interface IBinDataSourceDependencies {
     binApiAxiosInstance: AxiosInstance
 }
 
 const responseValidationSchema = z.object({
-	Status: z.enum(["SUCCESS", "NOT FOUND"]),
+	Status: z.enum(['SUCCESS', 'NOT FOUND']),
 })
 
 export type BinResponseData = z.infer<typeof responseValidationSchema>
@@ -24,6 +24,6 @@ export class BinDataSource implements IBinDataSource {
 
 		const validatedData = responseValidationSchema.parse(response.data)
 
-		return validatedData.Status === "SUCCESS"
+		return validatedData.Status === 'SUCCESS'
 	}
 }

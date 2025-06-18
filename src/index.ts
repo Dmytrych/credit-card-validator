@@ -1,6 +1,6 @@
-import {initApi} from "./api"
-import {configDotenv} from "dotenv";
-import {loadConfig} from "./api/config/load-config";
+import {initApi} from './api'
+import {configDotenv} from 'dotenv';
+import {loadConfig} from './api/config/load-config';
 
 async function startup() {
 	configDotenv()

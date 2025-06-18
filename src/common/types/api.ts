@@ -1,9 +1,9 @@
-import {FastifyBaseLogger, FastifyInstance, FastifyReply, FastifyRequest} from "fastify";
-import {IncomingMessage, Server, ServerResponse} from "node:http";
-import {ZodTypeProvider} from "fastify-type-provider-zod";
-import {RouteGenericInterface} from "fastify/types/route";
-import {FastifySchema} from "fastify/types/schema";
-import {ContextConfigDefault} from "fastify/types/utils";
+import {FastifyBaseLogger, FastifyInstance, FastifyReply, FastifyRequest} from 'fastify';
+import {IncomingMessage, Server, ServerResponse} from 'node:http';
+import {ZodTypeProvider} from 'fastify-type-provider-zod';
+import {RouteGenericInterface} from 'fastify/types/route';
+import {FastifySchema} from 'fastify/types/schema';
+import {ContextConfigDefault} from 'fastify/types/utils';
 
 type ServerType = Server
 

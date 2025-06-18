@@ -1,6 +1,6 @@
-import {FastifySchema} from "fastify/types/schema";
-import {AwilixContainer} from "awilix";
-import {FastifyValidatedHandler} from "../types/api";
+import {FastifySchema} from 'fastify/types/schema';
+import {AwilixContainer} from 'awilix';
+import {FastifyValidatedHandler} from '../types/api';
 
 type InjectionCB<TSchema extends FastifySchema> = (container: AwilixContainer) => FastifyValidatedHandler<TSchema>
 

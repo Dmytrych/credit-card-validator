@@ -1,7 +1,7 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const configSchema = z.object({
-	nodeEnv: z.enum(["development", "production", "test"]),
+	nodeEnv: z.enum(['development', 'production', 'test']),
 	api: z.object({
 		port: z.number(),
 		host: z.string(),

@@ -1,4 +1,4 @@
-import {FastifyError, FastifyInstance, FastifyReply, FastifyRequest} from "fastify";
+import {FastifyError, FastifyInstance, FastifyReply, FastifyRequest} from 'fastify';
 
 const GENERAL_ERROR_MESSAGE = 'Internal error'
 

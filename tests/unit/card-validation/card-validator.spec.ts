@@ -1,16 +1,16 @@
-import { ICardValidationParams } from "../../../src/features/cards/types"
-import { IBinValidator } from "../../../src/features/cards/card-validation/bin-validator"
-import { CardValidator } from "../../../src/features/cards/card-validation/card-validator"
-import * as utils from "../../../src/features/cards/card-validation/utils"
-import { CardValidationError, CardValidationErrorCode } from "../../../src/features/cards/card-validation/card-validation-error"
+import { ICardValidationParams } from '../../../src/features/cards/types'
+import { IBinValidator } from '../../../src/features/cards/card-validation/bin-validator'
+import { CardValidator } from '../../../src/features/cards/card-validation/card-validator'
+import * as utils from '../../../src/features/cards/card-validation/utils'
+import { CardValidationError, CardValidationErrorCode } from '../../../src/features/cards/card-validation/card-validation-error'
 
 const createMockBinValidator = (isValid: boolean): IBinValidator => ({
 	validate: jest.fn().mockResolvedValue(isValid),
 })
 
-const VALID_CARD = "4111111111111111"
-const INVALID_CARD_WITH_LETTERS = "41111111a1111111"
-const INVALID_LUHN_CARD = "4211111111111911"
+const VALID_CARD = '4111111111111111'
+const INVALID_CARD_WITH_LETTERS = '41111111a1111111'
+const INVALID_LUHN_CARD = '4211111111111911'
 
 const validParams: ICardValidationParams = {
 	cardNumber: VALID_CARD,
@@ -18,7 +18,7 @@ const validParams: ICardValidationParams = {
 	expirationYear: new Date().getFullYear() + 1,
 }
 
-describe("CardValidator", () => {
+describe('CardValidator', () => {
 	const setup = (binValid = true) => {
 		const binValidator = createMockBinValidator(binValid)
 		const validator = new CardValidator({ binValidator })
@@ -29,12 +29,12 @@ describe("CardValidator", () => {
 		jest.restoreAllMocks()
 	})
 
-	it("should not throw errors with valid params", async () => {
+	it('should not throw errors with valid params', async () => {
 		const { validator } = setup(true)
 		await expect(validator.validateOrThrow(validParams)).resolves.toBeUndefined()
 	})
 
-	it("should throw InvalidExpirationMonth for month < 1", async () => {
+	it('should throw InvalidExpirationMonth for month < 1', async () => {
 		const { validator } = setup()
 		const params = { ...validParams, expirationMonth: 0 }
 
@@ -43,7 +43,7 @@ describe("CardValidator", () => {
 		)
 	})
 
-	it("should throw InvalidExpirationMonth for month > 12", async () => {
+	it('should throw InvalidExpirationMonth for month > 12', async () => {
 		const { validator } = setup()
 		const params = { ...validParams, expirationMonth: 13 }
 
@@ -52,7 +52,7 @@ describe("CardValidator", () => {
 		)
 	})
 
-	it("should throw InvalidExpirationYear if year <= 0", async () => {
+	it('should throw InvalidExpirationYear if year <= 0', async () => {
 		const { validator } = setup()
 		const params = { ...validParams, expirationYear: 0 }
 
@@ -61,7 +61,7 @@ describe("CardValidator", () => {
 		)
 	})
 
-	it("should throw CardExpired if expiration is in the past", async () => {
+	it('should throw CardExpired if expiration is in the past', async () => {
 		const { validator } = setup()
 		const params = {
 			...validParams,
@@ -74,7 +74,7 @@ describe("CardValidator", () => {
 		)
 	})
 
-	it("should throw InvalidCardNumber if card contains non-number characters", async () => {
+	it('should throw InvalidCardNumber if card contains non-number characters', async () => {
 		const { validator } = setup()
 		const params = { ...validParams, cardNumber: INVALID_CARD_WITH_LETTERS }
 
@@ -83,9 +83,9 @@ describe("CardValidator", () => {
 		)
 	})
 
-	it("should re-throw unknown error from parseNumberString", async () => {
-		const customError = new Error("Unexpected failure")
-		jest.spyOn(utils, "parseNumberString").mockImplementation(() => {
+	it('should re-throw unknown error from parseNumberString', async () => {
+		const customError = new Error('Unexpected failure')
+		jest.spyOn(utils, 'parseNumberString').mockImplementation(() => {
 			throw customError
 		})
 
@@ -95,7 +95,7 @@ describe("CardValidator", () => {
 		await expect(validator.validateOrThrow(params)).rejects.toThrow(customError)
 	})
 
-	it("should throw InvalidCardNumber if Luhn check fails", async () => {
+	it('should throw InvalidCardNumber if Luhn check fails', async () => {
 		const params = { ...validParams, cardNumber: INVALID_LUHN_CARD }
 
 		const { validator } = setup()
@@ -104,7 +104,7 @@ describe("CardValidator", () => {
 		)
 	})
 
-	it("should throw InvalidCardNumber if binValidator returns false", async () => {
+	it('should throw InvalidCardNumber if binValidator returns false', async () => {
 		const { validator } = setup(false)
 		await expect(validator.validateOrThrow(validParams)).rejects.toThrow(
 			new CardValidationError(CardValidationErrorCode.InvalidCardNumber)
