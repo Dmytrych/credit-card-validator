@@ -11,6 +11,7 @@ const createMockBinValidator = (isValid: boolean): IBinValidator => ({
 const VALID_CARD = '4111111111111111'
 const INVALID_CARD_WITH_LETTERS = '41111111a1111111'
 const INVALID_LUHN_CARD = '4211111111111911'
+const TOO_SHORT_CARD = '4111111'
 
 const validParams: ICardValidationParams = {
 	cardNumber: VALID_CARD,
@@ -97,6 +98,15 @@ describe('CardValidator', () => {
 
 	it('should throw InvalidCardNumber if Luhn check fails', async () => {
 		const params = { ...validParams, cardNumber: INVALID_LUHN_CARD }
+
+		const { validator } = setup()
+		await expect(validator.validateOrThrow(params)).rejects.toThrow(
+			new CardValidationError(CardValidationErrorCode.InvalidCardNumber)
+		)
+	})
+
+	it('should throw InvalidCardNumber if the card number is too short', async () => {
+		const params = { ...validParams, cardNumber: TOO_SHORT_CARD }
 
 		const { validator } = setup()
 		await expect(validator.validateOrThrow(params)).rejects.toThrow(

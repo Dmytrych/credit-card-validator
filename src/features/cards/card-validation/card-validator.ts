@@ -4,6 +4,8 @@ import { checkLuhn } from './luhn-check'
 import { parseNumberString, ParsingError } from './utils'
 import { IBinValidator } from './bin-validator'
 
+const MIN_CARD_LENGTH = 8
+
 export interface ICardValidatorDependencies {
     binValidator: IBinValidator
 }
@@ -32,8 +34,13 @@ export class CardValidator implements ICardValidator {
 
 	private checkCardNumber(cardNumber: string): boolean {
 		try {
-			const digits = parseNumberString(cardNumber)
-			return checkLuhn(digits)
+			if (cardNumber.length < MIN_CARD_LENGTH) {
+				return false
+			}
+
+			return checkLuhn(
+				parseNumberString(cardNumber)
+			)
 		} catch (err) {
 			if (err instanceof ParsingError) {
 				return false
